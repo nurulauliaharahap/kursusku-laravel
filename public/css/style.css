@@ -1,0 +1,202 @@
+
+/* Pengaturan dasar */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f7f6;
+    color: #17312b;
+    line-height: 1.6;
+}
+
+.container {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+}
+
+/* Navigasi */
+.navbar {
+    background: #0f766e;
+    color: white;
+    padding: 14px 0;
+}
+
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: white;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Bagian hero */
+.hero {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 32px;
+    align-items: center;
+    padding: 55px 0;
+}
+
+.hero-label {
+    color: #0f766e;
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.25;
+    margin: 12px 0;
+}
+
+.hero-content > p:not(.hero-label) {
+    color: #53645e;
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image img {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 18px;
+}
+
+/* Katalog */
+#katalog {
+    padding: 10px 0 50px;
+}
+
+#katalog h2 {
+    margin-bottom: 6px;
+}
+
+.section-description {
+    color: #64716c;
+    margin-bottom: 24px;
+}
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.card {
+    background: white;
+    padding: 22px;
+    border-radius: 14px;
+    border: 1px solid #dbe8e4;
+    box-shadow: 0 3px 12px #0000000d;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+.course-code {
+    color: #0f766e;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.card h3 {
+    margin: 12px 0 8px;
+}
+
+.card p {
+    color: #53645e;
+}
+
+/* Tombol pendaftaran */
+.register-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 16px;
+    background: #0f766e;
+    color: white;
+    text-decoration: none;
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+.register-button:hover {
+    background: #115e59;
+}
+
+/* Footer */
+.footer {
+    background: white;
+    border-top: 1px solid #dbe8e4;
+    color: #64716c;
+    text-align: center;
+    padding: 22px 0;
+}
+
+/* Tampilan tablet dan HP */
+@media (max-width: 760px) {
+    .navbar-content {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 35px 0;
+    }
+
+    .hero-image img {
+        max-width: 300px;
+    }
+
+    .course-grid {
+        grid-template-columns: 1fr;
+    }
+}
