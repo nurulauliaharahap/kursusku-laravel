@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -11,7 +10,6 @@
 </head>
 <body>
 
-    <!-- Navigasi -->
     <header class="navbar">
         <div class="container navbar-content">
 
@@ -27,7 +25,7 @@
             <nav>
                 <a href="{{ route('home') }}">Beranda</a>
                 <a href="#katalog">Katalog</a>
-                <a href="/daftar">Daftar Kursus</a>
+                <a href="{{ route('daftar') }}">Daftar Kursus</a>
             </nav>
 
         </div>
@@ -35,9 +33,7 @@
 
     <main class="container">
 
-        <!-- Bagian utama -->
         <section class="hero">
-
             <div class="hero-content">
                 <p class="hero-label">
                     Belajar Web Secara Bertahap
@@ -52,7 +48,7 @@
                     yang ingin belajar pemrograman web secara bertahap.
                 </p>
 
-                <a href="/daftar" class="register-button">
+                <a href="{{ route('daftar') }}" class="register-button">
                     Mulai Belajar
                 </a>
             </div>
@@ -63,12 +59,9 @@
                     alt="Logo KursusKu"
                 >
             </div>
-
         </section>
 
-        <!-- Katalog kursus -->
         <section id="katalog">
-
             <h2>Kursus Pilihan</h2>
 
             <p class="section-description">
@@ -76,7 +69,6 @@
             </p>
 
             <div class="course-grid">
-
                 @foreach ($featured as $course)
                     <article class="card">
 
@@ -88,20 +80,20 @@
 
                         <p>{{ $course['description'] }}</p>
 
-                        <a href="/daftar" class="register-button">
+                        <a
+                            href="{{ route('daftar') }}"
+                            class="register-button"
+                        >
                             Daftar Sekarang
                         </a>
 
                     </article>
                 @endforeach
-
             </div>
-
         </section>
 
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             &copy; {{ date('Y') }} {{ $siteName }}.
