@@ -1,0 +1,50 @@
+TEST MATRIX WEEK-05
+===================
+
+1. LOAD FORM
+Status: Lulus
+Catatan: Halaman registration.php dapat dibuka dan form tampil tanpa error.
+
+2. REQUIRED
+Status: Lulus
+Catatan: Saat form kosong disubmit, browser menahan submit pada field yang wajib diisi.
+
+3. EMAIL
+Status: Lulus
+Catatan: Saat email diisi "abc", browser meminta format email yang valid.
+
+4. NAMA PENDEK
+Status: Lulus
+Catatan: Saat nama hanya diisi 2 karakter, minlength mencegah form untuk disubmit.
+
+5. GET
+Status: Lulus
+Catatan: Setelah method diubah menjadi GET dan form disubmit, parameter data terlihat pada URL.
+
+6. POST
+Status: Lulus
+Catatan: Setelah method dikembalikan menjadi POST, data tidak tampil pada URL.
+
+7. RADIO
+Status: Lulus
+Catatan: Pilihan Mahasiswa/Umum muncul pada hasil atau ringkasan data.
+
+8. CHECKBOX
+Status: Lulus
+Catatan: Setelah memilih dua minat, kedua nilai muncul setelah digabungkan.
+
+9. TEXTAREA
+Status: Lulus
+Catatan: Catatan yang dimasukkan pada textarea ditampilkan kembali dengan aman.
+
+10. HIDDEN
+Status: Lulus
+Catatan: Nilai hidden week-05 berhasil diterima saat form disubmit.
+
+11. MOBILE
+Status: Lulus
+Catatan: Pada tampilan sekitar 360 px, form menjadi satu kolom dan tidak mengalami overflow.
+
+12. NAVIGASI
+Status: Lulus
+Catatan: Link Beranda, Katalog, dan Daftar menuju tujuan yang benar.

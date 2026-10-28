@@ -1,0 +1,21 @@
+Test Matrix Week 09  KursusKu
+
+No.| Skenario Pengujian| Hasil yang Diharapkan| Status
+1| Membuka halaman beranda| Layout, navbar, dan Bootstrap tampil| BELUM DITES
+2| Memperkecil ukuran browser| Navbar responsive berfungsi| BELUM DITES
+3| Membuka halaman pendaftaran| Layout dan formulir tampil| BELUM DITES
+4| Membiarkan pilihan kursus kosong| Pesan instruksi tampil| BELUM DITES
+5| Memilih Web Dasar| Menampilkan 12 kursi tersisa| BELUM DITES
+6| Memilih PHP Dasar| Menampilkan 8 kursi tersisa| BELUM DITES
+7| Memilih Laravel Dasar| Menampilkan 4 kursi tersisa| BELUM DITES
+8| Mengirim nama dan email valid| Form lolos validasi dan pesan sukses tampil| BELUM DITES
+9| Mengirim email tidak valid| Pesan kesalahan validasi tampil| BELUM DITES
+10| Memeriksa tab Network| Request GET availability berstatus 200 dan menghasilkan JSON| BELUM DITES
+11| Memeriksa tab Console| Tidak ada error JavaScript penting| BELUM DITES
+12| Menguji error Ajax| Pesan gagal tampil saat endpoint salah| BELUM DITES
+
+Kesimpulan Pengujian
+
+Pengujian dilakukan untuk memastikan halaman, formulir, validasi, dan fitur Ajax berjalan sesuai Panduan Praktikum 9. Status pengujian akan diperbarui berdasarkan hasil percobaan yang benar-benar dilakukan.
+
+Catatan: Jangan mengubah status menjadi PASS sebelum pengujian berhasil dilakukan.
