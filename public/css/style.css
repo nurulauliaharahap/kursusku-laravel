@@ -1,4 +1,29 @@
 
+/* Informasi kursi tersedia */
+.course-availability {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 18px 0;
+}
+
+.availability-label {
+    color: #475569;
+    font-size: 14px;
+}
+
+.availability-count {
+    display: inline-block;
+    padding: 6px 12px;
+    color: #166534;
+    background-color: #dcfce7;
+    border: 1px solid #86efac;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
 /* Pengaturan dasar */
 * {
     box-sizing: border-box;

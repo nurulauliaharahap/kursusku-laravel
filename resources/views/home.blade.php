@@ -12,7 +12,6 @@
 
     <header class="navbar">
         <div class="container navbar-content">
-
             <a href="{{ route('home') }}" class="brand">
                 <img
                     src="{{ asset('img/logo.jpg') }}"
@@ -27,7 +26,6 @@
                 <a href="#katalog">Katalog</a>
                 <a href="{{ route('daftar') }}">Daftar Kursus</a>
             </nav>
-
         </div>
     </header>
 
@@ -80,6 +78,20 @@
 
                         <p>{{ $course['description'] }}</p>
 
+                        <p class="course-availability">
+                            <span class="availability-label">
+                                Kursi tersedia:
+                            </span>
+
+                            <strong
+                                class="availability-count"
+                                id="kursi-{{ $course['code'] }}"
+                                data-course-code="{{ $course['code'] }}"
+                            >
+                                Memuat...
+                            </strong>
+                        </p>
+
                         <a
                             href="{{ route('daftar') }}"
                             class="register-button"
@@ -100,6 +112,40 @@
             Semua hak dilindungi.
         </div>
     </footer>
+
+    <script>
+        // Menghubungkan kode kursus dengan ID pada route availability.
+        const courseIds = {
+            'WEB-01': 1,
+            'PHP-01': 2,
+            'LAR-01': 3
+        };
+
+        document.querySelectorAll('.availability-count').forEach(element => {
+            const code = element.dataset.courseCode;
+            const id = courseIds[code];
+
+            if (!id) {
+                element.textContent = 'Belum tersedia';
+                return;
+            }
+
+            fetch(`/courses/${id}/availability`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Gagal memuat kursi');
+                    }
+
+                    return response.json();
+                })
+                .then(data => {
+                    element.textContent = data.remaining + ' kursi';
+                })
+                .catch(() => {
+                    element.textContent = 'Tidak dapat dimuat';
+                });
+        });
+    </script>
 
 </body>
 </html>
