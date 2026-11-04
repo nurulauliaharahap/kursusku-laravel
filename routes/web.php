@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CourseController;
 use Illuminate\Http\Request;
 
 // Route halaman utama
@@ -26,6 +27,7 @@ Route::post('/daftar', function (Request $request) {
     ]);
 })->name('daftar.proses');
 
+// Route ketersediaan kursus
 Route::get('/courses/{course}/availability', function (int $course) {
     $availability = [
         1 => [
@@ -46,3 +48,6 @@ Route::get('/courses/{course}/availability', function (int $course) {
 
     return response()->json($availability[$course]);
 })->name('courses.availability');
+
+// Route CRUD kursus
+Route::resource('courses', CourseController::class);
