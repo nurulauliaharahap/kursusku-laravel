@@ -3,6 +3,7 @@
 @section('title', 'Kelola Kursus')
 
 @section('content')
+
 <style>
     .course-page {
         background: #f4f8f5;
@@ -83,7 +84,7 @@
     .course-table {
         width: 100%;
         border-collapse: collapse;
-        min-width: 750px;
+        min-width: 1050px;
     }
 
     .course-table th {
@@ -125,10 +126,76 @@
         color: #991b1b;
     }
 
+    .btn-detail,
+    .btn-edit,
+    .btn-delete {
+        display: inline-block;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 7px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: bold;
+        white-space: nowrap;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-detail {
+        background: #15803d;
+    }
+
+    .btn-detail:hover {
+        background: #14532d;
+        color: white;
+    }
+
+    .btn-edit {
+        background: #2563eb;
+        margin-left: 5px;
+    }
+
+    .btn-edit:hover {
+        background: #1d4ed8;
+        color: white;
+    }
+
+    .btn-delete {
+        background: #dc2626;
+        margin-left: 5px;
+    }
+
+    .btn-delete:hover {
+        background: #b91c1c;
+    }
+
+    .action-form {
+        display: inline-block;
+        margin: 0;
+    }
+
+    .success-message {
+        background: #dcfce7;
+        color: #166534;
+        padding: 14px 18px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
     .empty-message {
         text-align: center;
         padding: 30px;
         color: #6b7280;
+    }
+
+    @media (max-width: 600px) {
+        .course-page {
+            padding: 15px;
+        }
+
+        .course-header {
+            padding: 22px;
+        }
     }
 </style>
 
@@ -144,6 +211,12 @@
             + Tambah Kursus
         </a>
     </div>
+
+    @if(session('success'))
+        <div class="success-message">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <div class="summary-card">
         <small>Total Kursus Terdaftar</small>
@@ -163,6 +236,7 @@
                     <th>Kuota</th>
                     <th>Tanggal Mulai</th>
                     <th>Status</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
 
@@ -170,20 +244,55 @@
                 @forelse($courses as $course)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td><strong>{{ $course->code }}</strong></td>
+
+                        <td>
+                            <strong>{{ $course->code }}</strong>
+                        </td>
+
                         <td>{{ $course->name }}</td>
-                        <td>Rp {{ number_format($course->fee, 0, ',', '.') }}</td>
+
+                        <td>
+                            Rp {{ number_format($course->fee, 0, ',', '.') }}
+                        </td>
+
                         <td>{{ $course->quota }} peserta</td>
+
                         <td>{{ $course->start_date->format('d-m-Y') }}</td>
+
                         <td>
                             <span class="status status-{{ $course->status }}">
                                 {{ ucfirst($course->status) }}
                             </span>
                         </td>
+
+                        <td>
+                            <a href="{{ route('courses.show', $course->id) }}"
+                               class="btn-detail">
+                                Detail
+                            </a>
+
+                            <a href="{{ route('courses.edit', $course->id) }}"
+                               class="btn-edit">
+                                Edit
+                            </a>
+
+                            <form action="{{ route('courses.destroy', $course) }}"
+                                  method="POST"
+                                  class="action-form"
+                                  onsubmit="return confirm('Apakah kamu yakin ingin menghapus kursus ini?')">
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit" class="btn-delete">
+                                    Hapus
+                                </button>
+                            </form>
+                        </td>
                     </tr>
+
                 @empty
                     <tr>
-                        <td colspan="7" class="empty-message">
+                        <td colspan="8" class="empty-message">
                             Belum ada kursus. Silakan tambahkan kursus baru.
                         </td>
                     </tr>
@@ -193,4 +302,5 @@
     </div>
 
 </div>
+
 @endsection

@@ -1,0 +1,37 @@
+AI LOG PRAKTIKUM PERTEMUAN 11
+
+Proyek: KursusKu
+Mata Kuliah: Bahasa Pemrograman III (PHP & MySQL) / Pemrograman Web III
+
+1. Tujuan Penggunaan AI
+
+AI digunakan sebagai pendamping belajar untuk membantu memahami dan menyelesaikan Praktikum Pertemuan 11 tentang Laravel CRUD Lanjutan, meliputi halaman detail (Show), validasi menggunakan Form Request, Edit, Update, dan Delete.
+
+2. Bantuan AI yang Digunakan
+
+- Membantu memahami langkah-langkah pada panduan Praktikum Pertemuan 11.
+- Membimbing pemeriksaan route resource dan halaman detail Course.
+- Membantu membuat dan memahami StoreCourseRequest serta UpdateCourseRequest.
+- Membantu memeriksa CourseController untuk proses Show, Edit, Update, dan Delete.
+- Membantu memperbaiki form dan menampilkan pesan kesalahan validasi.
+- Menjelaskan penggunaan "old()", "$request->validated()", dan "Rule::unique()->ignore()".
+- Menjelaskan fungsi "@csrf", "@method('PUT')", dan "@method('DELETE')".
+- Membimbing pengujian validasi, pembaruan data, dan penghapusan data Course.
+- Membantu menyusun daftar pengujian dan bukti screenshot.
+
+3. Hasil yang Dicapai
+
+- Halaman detail Course berhasil dibuka.
+- Validasi tambah dan edit menggunakan Form Request.
+- Data Course berhasil diedit dan diperbarui.
+- Penghapusan Course menggunakan konfirmasi dan method DELETE.
+- Pesan sukses tampil setelah proses berhasil.
+- Pengujian minimal 12 kasus telah dilakukan.
+
+4. Peran dan Tanggung Jawab Mahasiswa
+
+Mahasiswa mengikuti panduan praktikum, menjalankan kode pada proyek KursusKu, mencoba setiap fitur, memeriksa hasilnya, melakukan pengujian, dan menyimpan bukti praktikum. Saran dari AI diperiksa dan disesuaikan dengan kondisi proyek sebelum digunakan.
+
+5. Kesimpulan
+
+Penggunaan AI membantu mahasiswa memahami alur CRUD lanjutan pada Laravel dan mengatasi kendala selama praktikum. Seluruh fitur tetap diperiksa dan diuji secara langsung pada aplikasi KursusKu.
