@@ -322,6 +322,11 @@
                     Kelola Kursus
                 </a>
 
+                <!-- Tombol Baru Daftar Enrollment -->
+                <a href="{{ route('enrollments.create') }}" class="register-button">
+                    Daftar Enrollment
+                </a>
+
             </div>
 
             <div class="hero-image">
