@@ -5,18 +5,50 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
+use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
-    // Menampilkan semua data kursus
-    public function index()
+    // Menampilkan data kursus dengan fitur pencarian, filter, dan pagination
+    public function index(Request $request)
     {
-        $courses = Course::latest()->get();
+        // Membuat query awal untuk mengambil data kursus
+        $query = Course::query();
 
-        return view('courses.index', compact('courses'));
+        // Mengambil kata kunci pencarian
+        $search = trim($request->input('q', ''));
+
+        // Pencarian berdasarkan kode atau nama kursus
+        if ($search !== '') {
+            $query->where(function ($q) use ($search) {
+                $q->where('code', 'like', '%' . $search . '%')
+                  ->orWhere('name', 'like', '%' . $search . '%');
+            });
+        }
+
+        // Mengambil status yang dipilih
+        $status = $request->input('status', '');
+
+        // Filter berdasarkan status kursus
+        if (in_array($status, ['open', 'closed', 'draft'])) {
+            $query->where('status', $status);
+        }
+
+        // Menampilkan 10 data kursus setiap halaman
+        // withQueryString() mempertahankan pencarian dan filter saat pindah halaman
+        $courses = $query->latest()
+                         ->paginate(10)
+                         ->withQueryString();
+
+        // Mengirim data ke halaman daftar kursus
+        return view('courses.index', compact(
+            'courses',
+            'search',
+            'status'
+        ));
     }
 
-    // Menampilkan form tambah kursus
+    // Menampilkan halaman tambah kursus
     public function create()
     {
         return view('courses.create');
@@ -37,7 +69,7 @@ class CourseController extends Controller
         return view('courses.show', compact('course'));
     }
 
-    // Menampilkan form edit kursus
+    // Menampilkan halaman edit kursus
     public function edit(Course $course)
     {
         return view('courses.edit', compact('course'));
