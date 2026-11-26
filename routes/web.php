@@ -6,6 +6,20 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
+
+
+// ==========================================
+// ROUTE LOGIN
+// ==========================================
+
+Route::get('/login', [AuthController::class, 'showLogin'])
+    ->name('login');
+
+Route::post('/login', [AuthController::class, 'login'])
+    ->name('login.process');
 
 
 // ==========================================
@@ -17,17 +31,12 @@ Route::get('/', [HomeController::class, 'index'])
 
 
 // ==========================================
-// ROUTE FORMULIR PENDAFTARAN
+// ROUTE PENDAFTARAN
 // ==========================================
 
 Route::get('/daftar', function () {
     return view('daftar');
 })->name('daftar');
-
-
-// ==========================================
-// ROUTE PROSES PENDAFTARAN
-// ==========================================
 
 Route::post('/daftar', function (Request $request) {
 
@@ -42,6 +51,15 @@ Route::post('/daftar', function (Request $request) {
     ]);
 
 })->name('daftar.proses');
+
+
+// ==========================================
+// ROUTE LUPA PASSWORD
+// ==========================================
+
+Route::get('/lupa-password', function () {
+    return view('auth.forgot-password');
+})->name('password.request');
 
 
 // ==========================================
@@ -75,24 +93,62 @@ Route::get('/courses/{course}/availability', function (int $course) {
 
 
 // ==========================================
-// ROUTE CRUD KURSUS
+// ROUTE KELOLA KURSUS
 // ==========================================
 
 Route::resource('courses', CourseController::class);
 
 
 // ==========================================
-// ROUTE ENROLLMENT
+// ROUTE KHUSUS PENGGUNA YANG SUDAH LOGIN
 // ==========================================
 
-// Menampilkan laporan enrollment
-Route::get('/enrollments', [EnrollmentController::class, 'index'])
-    ->name('enrollments.index');
+Route::middleware('auth')->group(function () {
 
-// Menampilkan form tambah enrollment
-Route::get('/enrollments/create', [EnrollmentController::class, 'create'])
-    ->name('enrollments.create');
+    // ======================================
+    // DASHBOARD ADMINISTRATOR
+    // ======================================
 
-// Menyimpan data enrollment
-Route::post('/enrollments', [EnrollmentController::class, 'store'])
-    ->name('enrollments.store');
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
+        ->name('admin.dashboard');
+
+
+    // ======================================
+    // ROUTE ENROLLMENT
+    // ======================================
+
+    Route::get('/enrollments', [EnrollmentController::class, 'index'])
+        ->name('enrollments.index');
+
+    Route::get('/enrollments/create', [EnrollmentController::class, 'create'])
+        ->name('enrollments.create');
+
+    Route::post('/enrollments', [EnrollmentController::class, 'store'])
+        ->name('enrollments.store');
+
+
+    // ======================================
+    // ROUTE PROFIL PENGGUNA
+    // ======================================
+
+    // Halaman Profil Saya
+    Route::get('/profile', [ProfileController::class, 'index'])
+        ->name('profile');
+
+    // Memperbarui identitas dan kontak
+    Route::put('/profile', [ProfileController::class, 'update'])
+        ->name('profile.update');
+
+    // Mengganti password
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])
+        ->name('profile.password');
+
+
+    // ======================================
+    // ROUTE LOGOUT
+    // ======================================
+
+    Route::post('/logout', [AuthController::class, 'logout'])
+        ->name('logout');
+
+});

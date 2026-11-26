@@ -80,6 +80,20 @@
             color: #14532d;
         }
 
+        /* TOMBOL LOGIN NAVBAR */
+        .navbar nav .login-nav-button {
+            background: #059669;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: 1px solid white;
+        }
+
+        .navbar nav .login-nav-button:hover {
+            background: #047857;
+            color: white;
+        }
+
         .hero {
             display: flex;
             justify-content: space-between;
@@ -119,7 +133,8 @@
 
         .register-button,
         .add-course-button,
-        .manage-button {
+        .manage-button,
+        .login-button {
             display: inline-block;
             padding: 12px 20px;
             margin-top: 12px;
@@ -136,6 +151,18 @@
 
         .register-button:hover {
             background: #14532d;
+            color: white;
+        }
+
+        /* TOMBOL LOGIN UTAMA */
+        .login-button {
+            background: #059669;
+            color: white;
+            margin-right: 8px;
+        }
+
+        .login-button:hover {
+            background: #047857;
             color: white;
         }
 
@@ -263,6 +290,7 @@
 
 <body>
 
+    <!-- NAVBAR -->
     <header class="navbar">
         <div class="container navbar-content">
 
@@ -277,8 +305,16 @@
 
             <nav>
                 <a href="{{ route('home') }}">Beranda</a>
+
                 <a href="#katalog">Katalog</a>
+
                 <a href="{{ route('daftar') }}">Daftar Kursus</a>
+
+                <!-- TOMBOL LOGIN BARU -->
+                <a href="{{ route('login') }}" class="login-nav-button">
+                    Login
+                </a>
+
                 <a href="{{ route('courses.index') }}">Kelola Kursus</a>
 
                 <a href="{{ route('courses.create') }}" class="nav-button">
@@ -289,6 +325,7 @@
         </div>
     </header>
 
+    <!-- HALAMAN UTAMA -->
     <main class="container">
 
         <section class="hero">
@@ -310,19 +347,27 @@
                     bersama KursusKu.
                 </p>
 
+                <!-- TOMBOL LOGIN -->
+                <a href="{{ route('login') }}" class="login-button">
+                    Login Sekarang
+                </a>
+
+                <!-- TOMBOL PENDAFTARAN -->
                 <a href="{{ route('daftar') }}" class="register-button">
                     Mulai Belajar
                 </a>
 
+                <!-- TOMBOL TAMBAH KURSUS -->
                 <a href="{{ route('courses.create') }}" class="add-course-button">
                     + Tambah Kursus
                 </a>
 
+                <!-- TOMBOL KELOLA KURSUS -->
                 <a href="{{ route('courses.index') }}" class="manage-button">
                     Kelola Kursus
                 </a>
 
-                <!-- Tombol Baru Daftar Enrollment -->
+                <!-- TOMBOL ENROLLMENT -->
                 <a href="{{ route('enrollments.create') }}" class="register-button">
                     Daftar Enrollment
                 </a>
@@ -338,6 +383,7 @@
 
         </section>
 
+        <!-- KATALOG KURSUS -->
         <section id="katalog">
 
             <h2>Kursus Pilihan</h2>
@@ -393,6 +439,7 @@
 
     </main>
 
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             &copy; {{ date('Y') }} {{ $siteName }}.
@@ -400,6 +447,7 @@
         </div>
     </footer>
 
+    <!-- SCRIPT KETERSEDIAAN KURSUS -->
     <script>
         const courseIds = {
             'WEB-01': 1,
